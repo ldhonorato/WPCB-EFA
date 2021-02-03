@@ -36,6 +36,9 @@ parser.add_argument("--class_name_path", type=str, default="./data/my_data/data.
                     help="The path of the class names.")
 parser.add_argument("--restore_path", type=str, default="./data/my_data/checkpoint/model-epoch_130_step_70084_loss_0.0919_lr_1e-05",
                     help="The path of the weights to restore.")
+parser.add_argument('--dataset_path', type=str, dest='database_path', required=True, help='Path dataset')
+
+
 args = parser.parse_args()
 
 
@@ -46,7 +49,8 @@ num_class = 1
 
 
 #path_image = '/home/lhss/Documents/Artigo_PDI/database/cvl_pcb_dslr_2/pcb24/rec1.jpg'
-database_path = '/home/lhss/Documents/Artigo_PDI/database/original dataset pcbs/'
+#database_path = '/home/lhss/Documents/Artigo_PDI/database/original dataset pcbs/'
+database_path = args.database_path
 
 with tf.Session() as sess:
     
