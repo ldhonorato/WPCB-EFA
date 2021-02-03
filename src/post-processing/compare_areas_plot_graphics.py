@@ -10,13 +10,16 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as plticker
+import argparse
+
+parser.add_argument('--base_path', type=str, dest='base_path', required=True, help='Path dataset with results')
+args = parser.parse_args()
+#base_path = '/home/lhss/Documents/Artigo_PDI/database/PCB DSLR and Results/pcb'
+base_path = args.base_path
 
 original_size = (3280, 4928)
 
-
 escala_area = (7/58)**2 #1 pixel corresponde a (7/58)² mm²
-
-base_path = '/home/lhss/Documents/Artigo_PDI/database/PCB DSLR and Results/'
 
 pcbs = list(['pcb' + str(p) for p in range(1, 166)])
 

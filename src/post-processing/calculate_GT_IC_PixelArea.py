@@ -9,6 +9,12 @@ Created on Sun Aug  2 19:42:35 2020
 import numpy as np
 import cv2
 import os
+import argparse
+
+parser.add_argument('--base_path', type=str, dest='base_path', required=True, help='Path dataset with results')
+args = parser.parse_args()
+#base_path = '/home/lhss/Documents/Artigo_PDI/database/PCB DSLR and Results/pcb'
+base_path = args.base_path
 
 original_size = (3280, 4928)
 
@@ -36,10 +42,6 @@ def get_annotations(fpath):
 
         return annotations
 
-
-
-
-base_path = '/home/lhss/Documents/Artigo_PDI/database/PCB DSLR and Results/pcb'
 
 for i in range(1, 166):
     bb_path = base_path + str(i) + '/'
