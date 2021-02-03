@@ -107,8 +107,7 @@ def get_new_vertices(img_piece_points, annotation_vertice):
     end_point = (new_max_x, new_max_y)
     return start_point, end_point
     
-def image_split(img_path, annot_vertices ,dim=(416,416), stride=(208,208), new_dataset_dir='PCBs_splited_416'):
-#def image_split(img_path, annot_vertices ,dim=(512,512), stride=(256,256), new_dataset_dir='PCBs_splited_512'):
+def image_split(img_path, annot_vertices, dim=(416,416), stride=(208,208), new_dataset_dir='PCBs_splited_416'):
     pcb_id = img_path.split('/')[-2]
     new_dataset_dir = os.path.join(new_dataset_dir, pcb_id)
     
@@ -225,7 +224,19 @@ def image_split(img_path, annot_vertices ,dim=(416,416), stride=(208,208), new_d
                 index += 1
 
 if __name__ == "__main__": 
-    root = '/home/lhss/Documents/Artigo_PDI/database/PCB DSLR'
+    
+    parser = argparse.ArgumentParser(description='Apply sliding window to split PCB DSLR dataset')
+    parser.add_argument('--root', type=str, dest='root', required=True, help='Path to the original dataset')
+    parser.add_argument('--window', type=int, dest='dim', default=(416,416), help='Size of the sliding window')
+    parser.add_argument('--stride', type=int, dest='stride', default=(208,208), help='Sliding window stride')
+    parser.add_argument('--output', type=int, dest='output', default='PCBs_splited_416', help='Destination output path')
+    args = parser.parse_args()
+    root = args.root
+    dim = args.dim
+    stride = args.stride
+    new_dataset_dir = args.output
+
+    #root = '/home/lhss/Documents/Artigo_PDI/database/PCB DSLR'
     
     list_folders = [os.path.join(root, 'cvl_pcb_dslr_'+str(i)) for i in range(1,9)]
     
@@ -238,7 +249,7 @@ if __name__ == "__main__":
             fpath = os.path.join(p, 'rec1-annot.txt')
             
             _, annot_vertices = get_annotations(fpath)
-            image_split(rpath, annot_vertices)
+            image_split(rpath, annot_vertices, dim, stride, new_dataset_dir)
             
 #    img_path = 'cvl_pcb_dslr_1/pcb2/rec1.jpg'
 #    fpath = 'cvl_pcb_dslr_1/pcb2/rec1-annot.txt'
