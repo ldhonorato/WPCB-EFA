@@ -31,7 +31,7 @@ TODO: Finish this
 
 With the IC object detetor trained, use the scipt /scr/post-processing/evaluate_full_pcb.py to apply the trained model into full size WPCB images from the PCB DSLR dataset. This script saves the raw image for each file and a csv file with coordinates and scores for each bouding box.
 
-![alt-text-1](image1.png "title-1") ![alt-text-2](image2.png "title-2")
+![](https://github.com/ldhonorato/WPCB-EFA/blob/main/example-pcb6/rec1.jpg | width=100 "Original PCB 6 iamge") !![](https://github.com/ldhonorato/WPCB-EFA/blob/main/example-pcb6/raw_yolo.jpg | width=100 "Raw YOLO Prediction")
 
 The CSV file for the example above can be founded at /example/bb_file.csv
 
